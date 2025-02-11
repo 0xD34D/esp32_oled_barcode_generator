@@ -128,7 +128,8 @@ esp_err_t draw_bar_code(u8g2_t *u8g2, const char *str) {
   }
 
   // calculate the start position of the barcode on the display
-  int pos = (DISPLAY_WIDTH - ((N * 7) + 11)) / 2;
+  int pos = type == EAN_13 ? (DISPLAY_WIDTH - (((N - 1) * 7) + 11)) / 2
+                           : (DISPLAY_WIDTH - ((N * 7) + 11)) / 2;
 
   u8g2_SetDrawColor(u8g2, 1);
   u8g2_DrawBox(u8g2, 0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
